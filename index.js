@@ -2,7 +2,8 @@ const { Client, Intents, Collection } = require('discord.js');
 const dotenv = require('dotenv');
 const fs = require('node:fs');
 const deploy = require("./deploy-commands")
-
+let http = require('http');
+http.createServer(function (req, res) { res.write("I'm alive"); res.end(); }).listen(8080);
 deploy.registerCommands()
 
 dotenv.config();
