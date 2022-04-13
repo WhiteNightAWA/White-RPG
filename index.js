@@ -1,13 +1,14 @@
 const { Client, Intents, Collection } = require('discord.js');
 const dotenv = require('dotenv');
 const fs = require('node:fs');
+const discordModals = require('discord-modals');
 const deploy = require("./deploy-commands")
-let http = require('http');
-http.createServer(function (req, res) { res.write("I'm alive"); res.end(); }).listen(8080);
+
 deploy.registerCommands()
 
 dotenv.config();
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
+discordModals(client)
 
 // Commands handling
 client.commands = new Collection();
@@ -20,7 +21,6 @@ for (const file of commandFiles) {
 
 // Events Handling
 const eventFiles = fs.readdirSync('./events').filter(file => file.endsWith('.js'));
-
 for (const file of eventFiles) {
     const event = require(`./events/${file}`);
     if (event.once) {

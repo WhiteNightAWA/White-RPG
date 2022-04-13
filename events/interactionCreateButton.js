@@ -10,12 +10,13 @@ module.exports = {
                     interaction.member.roles.add(memberRole, "clicked add role button")
                     await interaction.reply({
                         embeds: [new MessageEmbed({
-                            description: `:white_check_mark: Successfully added <@&855389666642362378> to <@${interaction.user.id}>`
+                            description: `:white_check_mark: Successfully added <@&855389666642362378> to <@${interaction.user.id}>`,
+                            timestamp: new Date(),
+                            color: "GREEN"
                         })],
                         ephemeral: true })
                     break;
             }
-
         } catch (error) {
             console.error(error);
             await interaction.reply({content: `There was an error while executing this command! \`\`\`${error}\`\`\``, ephemeral: true});

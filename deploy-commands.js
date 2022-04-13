@@ -8,12 +8,12 @@ dotenv.config();
 
 
 const registerCommands = function () {
-    const commands = []
+    let commands = []
     const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
 
     for (const file of commandFiles) {
-        const command = require(`./commands/${file}`);
-        commands.push(command.data.toJSON());
+        let command = require(`./commands/${file}`).data.toJSON();
+        commands.push(command);
     }
 
     const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
